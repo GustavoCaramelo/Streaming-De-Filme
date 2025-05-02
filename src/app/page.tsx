@@ -1,18 +1,18 @@
-import Banner from "@/components/Banner";
+import { getMovies } from '@/lib/api';
 import MovieList from '@/components/MovieList';
+import { Container, Typography } from '@mui/material';
 
-const sampleMovies = [
-  { id: 1, title: 'Stranger Things', image: '/images/strangerThings.png' },
-  { id: 2, title: 'Breaking Bad', image: '/images/breakingBad.png' },
-  { id: 3, title: 'Dark', image: '/images/dark.png' },
-  { id: 4, title: 'The Witcher', image: '/images/theWitcher.png' },
-];
+const Home = async () => {
+  const movies = await getMovies();
 
-export default function Home() {
   return (
-    <main style={{ backgroundColor: '#111', color: 'white', minHeight: '100vh' }}>
-      <Banner />
-      <MovieList title="Populares" movies={sampleMovies} />
-    </main>
+    <Container sx={{ py: 4 }}>
+      <Typography variant="h4" fontWeight="bold" gutterBottom align="center">
+        Filmes Studio Ghibli
+      </Typography>
+      <MovieList movies={movies} />
+    </Container>
   );
-}
+};
+
+export default Home;

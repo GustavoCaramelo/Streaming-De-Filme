@@ -1,42 +1,57 @@
 'use client';
 
-import { Box, Typography } from '@mui/material';
-import Image from 'next/image';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
-interface MovieListProps {
+interface Movie {
+  id: string;
   title: string;
-  movies: { id: number; title: string; image: string }[];
+  description: string;
+  director: string;
+  producer: string;
+  release_date: string;
+  running_time: string;
+  image: string;
 }
 
-export default function MovieList({ title, movies }: MovieListProps) {
+const MovieList = ({ movies }: { movies: Movie[] }) => {
   return (
-    <Box sx={{ padding: '1rem' }}>
-      <Typography variant="h6" color="white" sx={{ marginBottom: '0.5rem' }}>
-        {title}
-      </Typography>
-      <Box sx={{ display: 'flex', overflowX: 'auto', gap: 2 }}>
-        {movies.map((movie) => (
-          <Box
-            key={movie.id}
-            sx={{
-              minWidth: 220,
-              height: 255,
-              position: 'relative',
-              borderRadius: 1,
-              overflow: 'hidden',
-              cursor: 'pointer',
-              flexShrink: 0,
-            }}
-          >
-            <Image
-              src={movie.image}
+    <Grid container spacing={3} sx={{ padding: 4 }}>
+      {movies.map((movie) => (
+        <Box
+          key={movie.id}
+          sx={{
+            width: {
+              xs: '100%',
+              sm: '50%',
+              md: '33.33%',
+              lg: '25%',
+            },
+            padding: 1,
+          }}
+        >
+          <Card sx={{ height: '100%' }}>
+            <CardMedia
+              component="img"
+              height="400" // aumente de 300 para 400 ou 450
+              image={movie.image}
               alt={movie.title}
-              fill
-              style={{ objectFit: 'cover' }}
             />
-          </Box>
-        ))}
-      </Box>
-    </Box>
+            <CardContent>
+              <Typography variant="h6">{movie.title}</Typography>
+              <Typography variant="body2" color="text.secondary">
+                {movie.release_date} | Diretor: {movie.director}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Box>
+      ))}
+    </Grid>
   );
-}
+};
+
+export default MovieList;

@@ -1,12 +1,19 @@
-import MovieCard from '@/components/MovieCard';
-import { movies } from '@/lib/api';
+import { getMovies } from '@/lib/api';
+import HeroSlider from '@/components/HeroSlider';
+import MovieList from '@/components/MovieList';
+import { Container } from '@mui/material';
 
-export default function BrowsePage() {
+const BrowsePage = async () => {
+  const movies = await getMovies();
+
   return (
-    <main style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-      {movies.map(movie => (
-        <MovieCard key={movie.id} movie={movie} />
-      ))}
-    </main>
+    <>
+      <HeroSlider movies={movies} />
+      <Container sx={{ py: 4 }}>
+        <MovieList movies={movies} />
+      </Container>
+    </>
   );
-}
+};
+
+export default BrowsePage;
