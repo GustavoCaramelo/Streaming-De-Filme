@@ -16,6 +16,7 @@ interface Movie {
     running_time: string;
     image: string;
     rt_score: number;
+    movie_banner: string;
 }
 
 async function getMovie(id: string): Promise<Movie | null> {
@@ -67,12 +68,12 @@ export default function MoviePage({ params }: { params: { id: string } }) {
                 sx={{
                     position: 'relative',
                     width: '100%',
-                    height: { xs: 300, md: 500 },
+                    height: { xs: 300, md: 600 },
                     overflow: 'hidden',
                 }}
             >
                 <Image
-                    src={movie.image}
+                    src={movie.movie_banner}
                     alt={movie.title}
                     layout="fill"
                     objectFit="cover"
