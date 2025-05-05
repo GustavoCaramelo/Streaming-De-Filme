@@ -1,11 +1,6 @@
 'use client';
 
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import { Grid, Card, CardMedia, CardContent, Typography, Box } from '@mui/material';
 
 interface Movie {
   id: string;
@@ -16,35 +11,34 @@ interface Movie {
   release_date: string;
   running_time: string;
   image: string;
+  rt_score: number;
 }
 
 const MovieList = ({ movies }: { movies: Movie[] }) => {
   return (
-    <Grid container spacing={3} sx={{ padding: 4 }}>
+    <Grid container spacing={4} sx={{ paddingLeft: '10%' }}>
       {movies.map((movie) => (
         <Box
           key={movie.id}
           sx={{
             width: {
               xs: '100%',
-              sm: '50%',
-              md: '33.33%',
-              lg: '25%',
+              md: '20%',
             },
-            padding: 1,
           }}
         >
+
           <Card sx={{ height: '100%' }}>
             <CardMedia
               component="img"
-              height="400" // aumente de 300 para 400 ou 450
+              height="400"
               image={movie.image}
               alt={movie.title}
             />
             <CardContent>
               <Typography variant="h6">{movie.title}</Typography>
               <Typography variant="body2" color="text.secondary">
-                {movie.release_date} | Diretor: {movie.director}
+                {movie.release_date} | Diretor: {movie.director} | Score: {movie.rt_score}
               </Typography>
             </CardContent>
           </Card>

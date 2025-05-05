@@ -15,7 +15,7 @@ export default function Header() {
         setAnchorEl(null);
     };
 
-    const navLinks = ['Início', 'Filmes', 'Séries', 'Minha Lista'];
+    const navLinks = ['Início', 'Filmes', 'Minha Lista'];
 
     return (
         <AppBar position="static" color="primary">

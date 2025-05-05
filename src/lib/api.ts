@@ -7,6 +7,8 @@ export interface Movie {
   release_date: string;
   running_time: string;
   image: string;
+  rt_score: number;
+  movie_banner: string;
 }
 
 export const getMovies = async (): Promise<Movie[]> => {

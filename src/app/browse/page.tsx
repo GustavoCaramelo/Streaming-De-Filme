@@ -1,7 +1,6 @@
 import { getMovies } from '@/lib/api';
-import HeroSlider from '@/components/HeroSlider';
-import MovieList from '@/components/MovieList';
 import { Container } from '@mui/material';
+import HeroSlider from '@/components/HeroSlider';
 
 const BrowsePage = async () => {
   const movies = await getMovies();
@@ -10,7 +9,6 @@ const BrowsePage = async () => {
     <>
       <HeroSlider movies={movies} />
       <Container sx={{ py: 4 }}>
-        <MovieList movies={movies} />
       </Container>
     </>
   );

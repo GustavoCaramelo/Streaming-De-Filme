@@ -4,6 +4,8 @@ import Slider from 'react-slick';
 import Image from 'next/image';
 import { Box, Typography, Button } from '@mui/material';
 import { Movie } from '@/lib/api';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 interface HeroSliderProps {
   movies: Movie[];
@@ -22,40 +24,41 @@ const HeroSlider = ({ movies }: HeroSliderProps) => {
   };
 
   return (
-    <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+    <Box sx={{ width: '100%', height: '80vh', position: 'relative', overflow: 'hidden', mb: 4 }}>
       <Slider {...settings}>
         {movies.map((movie) => (
           <Box
             key={movie.id}
             sx={{
-              height: '80vh',
               position: 'relative',
+              width: '100%',
+              height: '80vh',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-start',
-              padding: '2rem',
-              backgroundColor: 'black',
+              px: 8,
+              boxSizing: 'border-box',
             }}
           >
+            {/* BACKGROUND IMAGE */}
             <Image
-              src={movie.image}
+              src={movie.movie_banner}
               alt={movie.title}
               fill
-              style={{ objectFit: 'cover', zIndex: -1, opacity: 0.7 }}
+              style={{ objectFit: 'cover', zIndex: -1, opacity: 0.6 }}
               priority
             />
+
+            {/* OVERLAY TEXT */}
             <Box sx={{ maxWidth: '600px', color: 'white', zIndex: 1 }}>
-              <Typography variant="h2" fontWeight="bold">
+              <Typography variant="h2" fontWeight="bold" sx={{ color: 'black' }}>
                 {movie.title}
               </Typography>
-              <Typography variant="body1" sx={{ mt: 2 }}>
-                {movie.description.slice(0, 140)}...
+              <Typography variant="body1" sx={{ mt: 2, color: 'black' }}>
+                {movie.description.slice(0, 140)}... 
               </Typography>
               <Box display="flex" gap={2} mt={3}>
                 <Button variant="contained">Assistir</Button>
-                <Button variant="outlined" color="inherit">
-                  Mais informações
-                </Button>
               </Box>
             </Box>
           </Box>
